@@ -1,5 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed&display=swap');
-
+@font-face {
+  font-family: 'Open Sans Condensed';
+  src: url("/fonts/OpenSansCondensed-Light.ttf");
+}
+@font-face {
+  font-family: 'Open Sans Condensed';
+  font-weight: bold;
+  src: url("/fonts/OpenSansCondensed-Bold.ttf");
+}
+@font-face {
+  font-family: "Open Sans Condensed";
+  font-style: italic;
+  src: url("/fonts/OpenSansCondensed-LightItalic.ttf");
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
