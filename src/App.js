@@ -1,14 +1,17 @@
 import React from 'react';
 import './App.css';
 import HomePage from './pages/homepage/Homepage.component'
-import {Route, Switch} from 'react-router-dom'
+import {Route, Switch, Redirect} from 'react-router-dom'
 import Shop from './pages/shop/Shop.component'
 import Header from './components/header/Header.component'
 import Authentication from './pages/authentication/Authentication.component'
 import {auth, createUserProfileDocument} from './firebase/firebase.utils'
+import {useDispatch, useSelector} from 'react-redux'
+import {setCurrentUser} from './redux/user/user.actions'
 
 const App = (props) => {
-    const [sCurrentUser, setCurrentUser] = React.useState(null)
+    const dispatch = useDispatch()
+    const pCurrentUser = useSelector(state => state.user.currentUser)
 
     React.useEffect(() => {
         let unsub = auth.onAuthStateChanged(userAuth => {
@@ -16,15 +19,16 @@ const App = (props) => {
                 createUserProfileDocument(userAuth)
                     .then(userRef => {
                         userRef.onSnapshot(snapshot => {
-                            setCurrentUser({
+                            dispatch(setCurrentUser({
                                 id: snapshot.id,
                                 ...snapshot.data()
-                            })
+                            }))
                         })
                     })
                 return
+            } else {
+                dispatch(setCurrentUser(userAuth))
             }
-            setCurrentUser(userAuth)
         })
         return () => {
             console.log('Unsubscribing from auth events')
@@ -34,11 +38,12 @@ const App = (props) => {
 
     return (
         <div>
-            <Header currentUser={sCurrentUser} />
+            <Header/>
             <Switch>
                 <Route path={'/shop'} component={Shop}/>
-                {!sCurrentUser &&
-                <Route path={'/signin'} component={Authentication}/>}
+                <Route exact path={'/signin'} render={() =>
+                    pCurrentUser ? <Redirect to={'/'}/> : <Authentication/>
+                }/>
                 <Route path={'/'} component={HomePage}/>
             </Switch>
         </div>
