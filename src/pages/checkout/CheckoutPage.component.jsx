@@ -3,6 +3,7 @@ import React from 'react'
 import './CheckoutPage.style.scss'
 import {useSelector} from 'react-redux'
 import {selectCartItems, selectCartTotal} from '../../redux/cart/cart.selectors'
+import CheckoutItem from '../../components/checkout-item/CheckoutItem.component'
 
 const CheckoutPage = (props) => {
     const pCartItems = useSelector(selectCartItems)
@@ -27,7 +28,7 @@ const CheckoutPage = (props) => {
                     <span>Remove</span>
                 </div>
             </div>
-            {pCartItems.map(item => item.name)}
+            {pCartItems.map(item => <CheckoutItem item={item} key={item.id}/>)}
             <div className={'total'}>
                 <span>TOTAL: ${pCartTotal}</span>
             </div>
