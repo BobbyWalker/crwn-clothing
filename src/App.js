@@ -8,10 +8,11 @@ import Authentication from './pages/authentication/Authentication.component'
 import {auth, createUserProfileDocument} from './firebase/firebase.utils'
 import {useDispatch, useSelector} from 'react-redux'
 import {setCurrentUser} from './redux/user/user.actions'
+import {selectCurrentUser} from './redux/user/user.selectors'
 
 const App = (props) => {
     const dispatch = useDispatch()
-    const pCurrentUser = useSelector(state => state.user.currentUser)
+    const pCurrentUser = useSelector(selectCurrentUser)
 
     React.useEffect(() => {
         let unsub = auth.onAuthStateChanged(userAuth => {
@@ -34,7 +35,7 @@ const App = (props) => {
             console.log('Unsubscribing from auth events')
             unsub()
         }
-    }, [])
+    }, [dispatch])
 
     return (
         <div>
