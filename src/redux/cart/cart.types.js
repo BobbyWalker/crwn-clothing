@@ -1,1 +1,3 @@
+export const CART_ADD_ITEM = 'CART_ADD_ITEM'
 export const TOGGLE_CART_HIDDEN = 'TOGGLE_CART_HIDDEN'
+
