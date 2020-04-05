@@ -4,9 +4,12 @@ import './Header.style.scss'
 import {ReactComponent as Logo} from './Crwn.svg'
 import {auth} from '../../firebase/firebase.utils'
 import {useSelector} from 'react-redux'
+import CartIcon from '../cart-icon/CartIcon.component'
+import CartDropdown from '../cart-dropdown/CartDropdown.component'
 
 const Header = () => {
     const pCurrentUser = useSelector(state => state.user.currentUser)
+    const pCartHidden = useSelector(state => state.cart.hidden)
 
     return (
         <div className={'header'}>
@@ -21,7 +24,9 @@ const Header = () => {
                     :
                     <Link to={'/signin'} className={'option'}>SIGN IN</Link>
                 }
+                <CartIcon/>
             </div>
+            {!pCartHidden && <CartDropdown/>}
         </div>
     )
 }
