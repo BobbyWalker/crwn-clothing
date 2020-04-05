@@ -9,6 +9,7 @@ import {auth, createUserProfileDocument} from './firebase/firebase.utils'
 import {useDispatch, useSelector} from 'react-redux'
 import {setCurrentUser} from './redux/user/user.actions'
 import {selectCurrentUser} from './redux/user/user.selectors'
+import CheckoutPage from './pages/checkout/CheckoutPage.component'
 
 const App = (props) => {
     const dispatch = useDispatch()
@@ -42,6 +43,7 @@ const App = (props) => {
             <Header/>
             <Switch>
                 <Route path={'/shop'} component={Shop}/>
+                <Route exact path={'/checkout'} component={CheckoutPage}/>
                 <Route exact path={'/signin'} render={() =>
                     pCurrentUser ? <Redirect to={'/'}/> : <Authentication/>
                 }/>
