@@ -1,16 +1,11 @@
 import React from 'react'
-import ShopData from './Shop.data'
 import './Shop.styles.scss'
-import PreviewCollection from '../../components/preview-collection/PreviewCollection.component'
+import CollectionsOverview from '../../components/collections-overview/CollectionsOverview.component'
 
 const Shop = (props) => {
-    const [sCollections] = React.useState(ShopData)
-
     return (
         <div className={'shop'}>
-            {sCollections.map(({id, ...otherKeys}) => (
-                <PreviewCollection key={id} {...otherKeys}/>
-            ))}
+            <CollectionsOverview/>
         </div>
     )
 }
