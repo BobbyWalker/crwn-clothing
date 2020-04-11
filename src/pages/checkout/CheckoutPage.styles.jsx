@@ -1,43 +1,46 @@
-.checkout {
+import styled from 'styled-components'
+import StripeButton from '../../components/stripe-button/StripeButton.comonent'
+
+export const CheckoutPageContainer = styled.div`
   width: 55%;
   min-height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 50px auto 0;
+  `;
 
-  .checkout-header {
+export const CheckoutPageHeader = styled.div`
     width: 100%;
     height: 40px;
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid darkgrey;
+`;
 
-    .header-block {
+export const CheckoutPageHeaderBlock = styled.div`
       text-transform: capitalize;
       width: 23%;
-
+      
       &:last-child {
         width: 8%;
       }
-    }
-  }
+  `;
 
-  .total {
+export const CheckoutPageTotal = styled.div`
     margin-top: 30px;
     margin-left: auto;
     font-size: 36px;
-  }
+    `;
 
-  button {
+export const CheckoutPageButton = styled(StripeButton)`
     margin-left: auto;
     margin-top: 50px;
-  }
+`;
 
-  .test-warning {
+export const CheckoutTestWarning = styled.div`
     color: red;
     text-align: center;
     margin-top: 40px;
     font-size: 24px;
-  }
-}
+    `;

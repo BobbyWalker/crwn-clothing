@@ -2,8 +2,8 @@ import React from 'react'
 import FormInput from '../form-input/FormInput.component'
 import CustomButton from '../custom-button/CustomButton.component'
 import {auth, createUserProfileDocument} from '../../firebase/firebase.utils'
-
-import './Register.style.scss'
+import {RegisterContainer} from './Register.style'
+import {TitleH2} from '../styles/common.styles'
 
 const Register = (props) => {
     const [sDisplayName, setDisplayName] = React.useState('')
@@ -45,8 +45,8 @@ const Register = (props) => {
     }
 
     return (
-        <div className={'register'}>
-            <h2 className={'title'}>I do not have an account</h2>
+        <RegisterContainer>
+            <TitleH2>I do not have an account</TitleH2>
             <span>Sign up with your email and password</span>
             <form className={'register-form'} onSubmit={handleSubmit}>
                 <FormInput type={'text'} name={'displayName'}
@@ -63,7 +63,7 @@ const Register = (props) => {
                            label={'Confirm Password'} required/>
                 <CustomButton type={'submit'}>Register</CustomButton>
             </form>
-        </div>
+        </RegisterContainer>
     )
 }
 

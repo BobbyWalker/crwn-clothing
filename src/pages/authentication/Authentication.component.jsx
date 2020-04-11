@@ -1,13 +1,14 @@
 import React from 'react'
 import Signin from '../../components/signin/Signin.component'
 import Register from '../../components/register/Register.component'
-import './Authentication.style.css'
+import './Authentication.style'
+import {AuthenticationContainer} from './Authentication.style'
 
 const Authentication = () => (
-    <div className={'authentication'}>
+    <AuthenticationContainer>
         <Signin/>
         <Register/>
-    </div>
+    </AuthenticationContainer>
 )
 
 export default Authentication
