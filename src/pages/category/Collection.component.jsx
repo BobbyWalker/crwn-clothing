@@ -7,7 +7,7 @@ import CollectionItem from '../../components/collection-item/CollectionItem.comp
 
 const Collection = ({match}) => {
     const pCollection = useSelector(selectCollection(match.params.categoryID))
-    console.log(pCollection)
+
     return (
         <CollectionPageContainer>
             <CollectionPageTitle>{pCollection.title}</CollectionPageTitle>

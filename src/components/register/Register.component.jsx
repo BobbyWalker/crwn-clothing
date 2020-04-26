@@ -1,11 +1,14 @@
 import React from 'react'
 import FormInput from '../form-input/FormInput.component'
 import CustomButton from '../custom-button/CustomButton.component'
-import {auth, createUserProfileDocument} from '../../firebase/firebase.utils'
 import {RegisterContainer} from './Register.style'
 import {TitleH2} from '../styles/common.styles'
+import {useDispatch} from 'react-redux'
+import {emailRegisterStart} from '../../redux/user/user.actions'
 
 const Register = (props) => {
+    const dispatch = useDispatch()
+
     const [sDisplayName, setDisplayName] = React.useState('')
     const [sEmail, setEmail] = React.useState('')
     const [sPassword, setPassword] = React.useState('')
@@ -17,10 +20,11 @@ const Register = (props) => {
             alert('Passwords do not match')
             return
         }
-
-        const {user} = await auth.createUserWithEmailAndPassword( sEmail, sPassword )
-        await createUserProfileDocument(user, {
-            displayName: sDisplayName, photoURL: null, phoneNumber: null})
+        let additionalDetails = {
+            displayName: sDisplayName, photoURL: null,
+            phoneNumber: null
+        }
+        dispatch(emailRegisterStart(sEmail, sPassword, additionalDetails))
     }
 
     const handleChange = (e) => {
